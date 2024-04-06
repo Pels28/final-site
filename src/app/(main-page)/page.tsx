@@ -149,7 +149,7 @@ const Home = () => {
                 isZoomed
                 src="/images/old.jpg"
                 className="w-full h-[400px]"
-                alt="old"
+                alt="old"git 
               />
 
               <Image
