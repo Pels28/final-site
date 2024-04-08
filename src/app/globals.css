@@ -13,7 +13,7 @@ body {
   padding: 0;
   margin: 0;
   /* TODO: Change once other devices views or UI are ready  */
-  min-width: 1024px;
+
   scroll-behavior: smooth;
   overflow-x: hidden;
 }

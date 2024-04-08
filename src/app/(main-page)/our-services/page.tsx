@@ -2,7 +2,7 @@
 
 import Card from "@/components/Card";
 import Heading from "@/components/Heading";
-import { CircularProgress, Image } from "@nextui-org/react";
+import { CircularProgress, Image, Link, Button as NextButton } from "@nextui-org/react";
 import Button from "@/components/Button/index";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Input from "@/components/forms/Input";
@@ -182,9 +182,16 @@ const OurServices = () => {
               catalysts of transformational journeys,...
             </p>
 
-            <Button size="lg" className="px-8 mt-5" rounded>
+            <NextButton
+            href="/about-us"
+              as={Link}
+              showAnchorIcon
+              color="primary"
+              size="lg"
+              className="px-8 mt-5 rounded-full"
+            >
               Read more
-            </Button>
+            </NextButton>
           </div>
         </div>
         <div className="w-full overflow-hidden p-8 md:flex md:flex-row md:items-center md:justify-start gap-8 mb-0" ref={containerRef}>
@@ -230,13 +237,13 @@ const OurServices = () => {
               <p className="font-semibold">700+ Satisfied Customers</p>
             </div>
 
-            <Button size="lg" className="px-8" rounded>
+            {/* <Button size="lg" className="px-8" rounded>
               Get in touch
-            </Button>
+            </Button> */}
             
             <div className =" hidden md:flex flex-row items-center justify-start gap-3 mb-9"> 
               <Image  width={120} height={120} src="/images/bc.jpg"/>
-              <h3>British council approved Registration centre</h3>
+              <small>British council approved Registration centre</small>
             </div>
           </div>
           <Card

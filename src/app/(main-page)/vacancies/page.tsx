@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Card from "@/components/Card";
 import Heading from "@/components/Heading";
 import { Image } from "@nextui-org/react";
 import Button from "@/components/Button";
 
 import Forms from "@/components/forms";
-
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AhodwoMapSearch from "../../../components/AhodwoMapSearch";
 import useEmblaCarousel from "embla-carousel-react";
 import styles from "../card.module.css";
@@ -14,11 +14,57 @@ import styles from "../card.module.css";
 const Vancancies = () => {
   const [value, setValue] = React.useState("fruit");
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
-  const openPdf = () => {
-    
-    const pdfPath = '/Bandoh Kwaku.pdf';
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
+  console.log(section);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const healthContainer = useRef<HTMLDivElement>(null);
+  const standardTestSectionContainer = useRef<HTMLDivElement>(null);
+  // /vacancies#horizontal-scroll
 
-    window.open(pdfPath, '_blank');
+  const scrollContainerToHorizontalCards = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollContainerToHealthCare = () => {
+    if (healthContainer.current) {
+      healthContainer.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollContainerToStandardTestSection = () => {
+    if (standardTestSectionContainer.current) {
+      standardTestSectionContainer.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (section === "horizontal-scroll") {
+      scrollContainerToHorizontalCards();
+    } else if (section === "health-care") {
+      scrollContainerToHealthCare();
+    } else if (section === "standard-test-section") {
+      scrollContainerToStandardTestSection();
+    }
+    [section];
+  });
+
+  console.log(pathname);
+
+  const openPdf = () => {
+    const pdfPath = "/Bandoh Kwaku.pdf";
+
+    window.open(pdfPath, "_blank");
   };
   return (
     <>
@@ -30,7 +76,10 @@ const Vancancies = () => {
         </section>
 
         {/* New section with the left text and image on the right */}
-        <section className="flex flex-col px-5 items-start justify-start w-screen  md:flex-row md:justify-center md:items-center md:space-x-8 mt-8 md:px-32">
+        <section
+          className="flex flex-col px-5 items-start justify-start w-screen  md:flex-row md:justify-center md:items-center md:space-x-8 mt-8 md:px-32"
+          ref={healthContainer}
+        >
           {/* Text on the left */}
           <div className="">
             <Heading variant="h4">Are you based in the UK?</Heading>
@@ -71,8 +120,9 @@ const Vancancies = () => {
 
         {/* Horizontal Scroll Cards */}
         <section
-          id="horizontal-scroll"
+          id="horizontalscroll"
           className="w-full pl-10 py-10 space-y-6 md:py-24 md:pl-32"
+          ref={containerRef}
         >
           <Heading variant="h2">Our Vacancies Available</Heading>
           <br />
@@ -90,19 +140,23 @@ const Vancancies = () => {
                         Banking & non-banking Professionals
                       </Heading>
                       <p>
-                        The worlds leading financial services firm, is
-                        hiring banking & non-banking Professionals at various
-                        levels. Those roles are oepn to all, including
-                        applicants based outside the UK.
+                        The worlds leading financial services firm, is hiring
+                        banking & non-banking Professionals at various levels.
+                        Those roles are oepn to all, including applicants based
+                        outside the UK.
                       </p>
                       <div className="w-1/2">
-                      <Button 
-                      onClick={() =>
-                        (window.location.href = "/appointment")
-                      }
-                      className="mt-5" rounded size="lg" fullWidth>
-                        Apply
-                      </Button>
+                        <Button
+                          onClick={() =>
+                            (window.location.href = "/appointment")
+                          }
+                          className="mt-5"
+                          rounded
+                          size="lg"
+                          fullWidth
+                        >
+                          Apply
+                        </Button>
                       </div>
                     </div>
                   </Card>
@@ -113,26 +167,31 @@ const Vancancies = () => {
                 <div className="flex-shrink-0 w-[370.3px]">
                   <Card className="w-full h-[320px] bg-gray">
                     <div className="flex flex-col h-full justify-between">
-                      <Heading variant="h4">
-                      Physician Assistant
-                      </Heading>
+                      <Heading variant="h4">Physician Assistant</Heading>
                       <p>
-                      For our Local Health care service in Ghana
-                      <h5>REQUIREMENT</h5>
-                      <ul className="bullet-list">
-                        <li>CV</li>
-                        <li>School Certificate</li>
-                        <li>License with medical and Dental Council with your registration number</li>
-                      </ul>
+                        For our Local Health care service in Ghana
+                        <h5>REQUIREMENT</h5>
+                        <ul className="bullet-list">
+                          <li>CV</li>
+                          <li>School Certificate</li>
+                          <li>
+                            License with medical and Dental Council with your
+                            registration number
+                          </li>
+                        </ul>
                       </p>
                       <div className="w-1/2">
-                      <Button 
-                      onClick={() =>
-                        (window.location.href = "/appointment")
-                      }
-                      className="mt-5" rounded size="lg" fullWidth>
-                        Apply
-                      </Button>
+                        <Button
+                          onClick={() =>
+                            (window.location.href = "/appointment")
+                          }
+                          className="mt-5"
+                          rounded
+                          size="lg"
+                          fullWidth
+                        >
+                          Apply
+                        </Button>
                       </div>
                     </div>
                   </Card>
@@ -147,32 +206,37 @@ const Vancancies = () => {
                         Banking & non-banking Professionals
                       </Heading>
                       <p>
-                        The worlds leading financial services firm, is
-                        hiring banking & non-banking Professionals at various
-                        levels. Those roles are oepn to all, including
-                        applicants based outside the UK.
+                        The worlds leading financial services firm, is hiring
+                        banking & non-banking Professionals at various levels.
+                        Those roles are oepn to all, including applicants based
+                        outside the UK.
                       </p>
                       <div className="w-1/2">
-                      <Button 
-                      onClick={() =>
-                        (window.location.href = "/appointment")
-                      }
-                      className="mt-5" rounded size="lg" fullWidth>
-                        Apply
-                      </Button>
+                        <Button
+                          onClick={() =>
+                            (window.location.href = "/appointment")
+                          }
+                          className="mt-5"
+                          rounded
+                          size="lg"
+                          fullWidth
+                        >
+                          Apply
+                        </Button>
                       </div>
                     </div>
                   </Card>
                 </div>
               </div>
-             
-           
             </div>
           </div>
         </section>
 
         {/* forms */}
-        <section className="w-screen flex flex-col items-start justify-start md:justify-center md:items-center space-x-4 mt-8 md:pb-16">
+        <section
+          className="w-screen flex flex-col items-start justify-start md:justify-center md:items-center space-x-4 mt-8 md:pb-16"
+          ref={standardTestSectionContainer}
+        >
           <Card
             className="w-full md:h-[749px] bg-gray md:grid md:grid-cols-2 md:gap-8"
             bordered={false}
@@ -238,10 +302,8 @@ const Vancancies = () => {
         </section>
 
         <section className="flex justify-center items-center md:space-x-4 mt-8 md:px-32 pb-32">
-         
-   
           <AhodwoMapSearch className="hidden md:flex" />
-        
+
           {/* Two Vertical Cards on the right */}
           <div className="flex-shrink-0 space-y-5">
             <Card className=" h-[290px] w-[430px] bg-primary pt-10 px-14 flex flex-col items-start justify-start gap-10 text-white">

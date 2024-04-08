@@ -112,7 +112,7 @@ const Forms = () => {
   return (
     <form ref={formRef} onSubmit={sendEmail}>
       <>
-        <section className="grid grid-cols-2 gap-4">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input label="Name" type="text" name="user_name" required />
 
 
@@ -122,7 +122,7 @@ const Forms = () => {
         {/* Add some space between the sections */}
         <div className="mb-[20px]"></div>
 
-        <section className="grid grid-cols-2 gap-4">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input label="Contact" type="tel" name="user_contact" required />
 
 

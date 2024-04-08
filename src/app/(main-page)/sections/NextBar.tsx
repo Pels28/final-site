@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -38,6 +38,8 @@ const TABS = [
 ];
 
 export default function NextBar() {
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("/");
   const pathname = usePathname();
@@ -48,10 +50,25 @@ export default function NextBar() {
     { name: "About Us", path: "/about-us" },
     { name: "Our Services", path: "/our-services" },
     { name: "Vacancies", path: "/vacancies" },
+    { name: "Contact Us", path: "/contact-us" },
   ];
 
+  useEffect(() => {
+    if (pathname === "/about-us") {
+      setActiveTab("about-us");
+    } else if (pathname === "/") {
+      setActiveTab("/");
+    } else if (pathname === "/our-services") {
+      setActiveTab("our-services");
+    } else if (pathname === "/vacancies") {
+      setActiveTab("vacancies");
+    } else if (pathname === "/contact-us") {
+      setActiveTab("contact-us");
+    }
+  }, [pathname, activeTab]);
+
   return (
-    <div className="bg-gray flex flex-row items-center justify-between rounded-full px-10 py-0 h-[80px] z-30 absolute top-[15%] left-1 right-1 lg:right-10 lg:left-10 mx-auto">
+    <div className="bg-gray flex flex-row items-center justify-between md:rounded-full px-10 py-0 h-[80px] z-30 absolute top-0 md:top-[15%] left-0 right-0 md:left-1 md:right-1 lg:right-10 lg:left-10 mx-auto">
       <Navbar
         classNames={{
           base: ["bg-gray"],
@@ -113,7 +130,7 @@ export default function NextBar() {
             </Button>
           </NavbarItem>
         </NavbarContent>
-        <NavbarMenu className="w-[96%] mx-auto mt-[120px] rounded-2xl">
+        <NavbarMenu className="w-[96%] max-h-[200px] overflow-hidden mx-auto mt-6  rounded-2xl">
           {menuItems.map((item, index) => (
             <NavbarMenuItem
               isActive={pathname === item.path}

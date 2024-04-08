@@ -2,7 +2,12 @@
 
 import Card from "@/components/Card";
 import Heading from "@/components/Heading";
-import { CircularProgress, Image } from "@nextui-org/react";
+import {
+  CircularProgress,
+  Image,
+  Button as NextButton,
+  Link,
+} from "@nextui-org/react";
 import Button from "@/components/Button/index";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Input from "@/components/forms/Input";
@@ -17,6 +22,8 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./card.module.css";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import NextLink from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const Home = () => {
   const [mapInfo, setMapInfo] = useState<{
@@ -27,6 +34,9 @@ const Home = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     AutoScroll({ stopOnInteraction: false }),
   ]);
+
+  const pathname = usePathname();
+  const router = useRouter();
 
   // const containerRef = useRef<HTMLDivElement>(null);
 
@@ -120,7 +130,7 @@ const Home = () => {
         </div>
 
         <div className="bg-gray w-full h-[900px]  p-8 flex flex-col md:flex-row items-start md:items-center justify-start gap-8">
-        <Card
+          <Card
             shadow
             rounded
             padded={false}
@@ -149,7 +159,8 @@ const Home = () => {
                 isZoomed
                 src="/images/old.jpg"
                 className="w-full h-[400px]"
-                alt="old"git 
+                alt="old"
+                git
               />
 
               <Image
@@ -177,9 +188,16 @@ const Home = () => {
               catalysts of transformational journeys,...
             </p>
 
-            <Button size="lg" className="px-8 mt-5" rounded>
+            <NextButton
+              href="/about-us"
+              as={Link}
+              showAnchorIcon
+              color="primary"
+              size="lg"
+              className="px-8 mt-5 rounded-full"
+            >
               Read more
-            </Button>
+            </NextButton>
           </div>
         </div>
         <div className="w-full overflow-hidden p-8 md:flex md:flex-row md:items-center md:justify-start gap-4 mb-0">
@@ -225,12 +243,12 @@ const Home = () => {
               <p className="font-semibold">700+ Satisfied Customers</p>
             </div>
 
-            <Button size="lg" className="px-8" rounded>
+            {/* <Button size="lg" className="px-8" rounded>
               Get in touch
-            </Button>
-            <div className =" hidden md:flex flex-row items-center justify-start gap-3 mb-9"> 
-              <Image   width={100} height={100} src="/images/bc.jpg"></Image>
-             <h3> British Council approved registration centre</h3>
+            </Button> */}
+            <div className=" hidden md:flex flex-row items-center justify-start gap-3 mb-9">
+              <Image width={100} height={100} src="/images/bc.jpg"></Image>
+              <small> British Council approved registration centre</small>
             </div>
           </div>
           <Card
@@ -273,30 +291,52 @@ const Home = () => {
                 The Services we provide include the following:
               </p>
               <div className="flex w-[100%] px-4 mx-auto flex-row items-start md:items-center justify-start gap-4 md:absolute left-[480px] z-10">
-                <Card
-                  shadow={false}
-                  padded={false}
-                  className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                <NextLink
+                  href={{
+                    pathname: "/vacancies",
+                    query: { section: "horizontal-scroll" },
+                  }}
                 >
-                  <p className="w-1/2">International Recruitment </p>
-                </Card>
-                <Card
-                  shadow={false}
-                  padded={false}
-                  className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                  <Card
+                    // onClick={() => {router.push("/vacancies#horizontal-scroll")}}
+                    shadow={false}
+                    padded={false}
+                    className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                  >
+                    <p className="w-1/2">International Recruitment </p>
+                  </Card>
+                </NextLink>
+                <NextLink
+                  href={{
+                    pathname: "/vacancies",
+                    query: { section: "health-care" },
+                  }}
                 >
-                  <p className="w-1/2"> ND Healthcare</p>
-                </Card>
+                  <Card
+                    shadow={false}
+                    padded={false}
+                    className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                  >
+                    <p className="w-1/2"> ND Healthcare</p>
+                  </Card>
+                </NextLink>
               </div>
             </div>
             <div className="w-full grid grid-cols-2  md:flex md:flex-row px-4 md:items-start md:justify-start gap-2 md:gap-5 md:pt-16 md:px-0 md:pl-10">
-              <Card
-                shadow={false}
-                padded={false}
-                className="md:bg-white shadow-lg hover:shadow-xl bg-secondary text-white md:text-secondary p-4 h-[200px] w-[220px] flex items-center justify-center hover:shadow-lg"
+              <NextLink
+                href={{
+                  pathname: "/vacancies",
+                  query: { section: "horizontal-scroll" },
+                }}
               >
-                <p className="md:w-1/2">Local Recruitment</p>
-              </Card>
+                <Card
+                  shadow={false}
+                  padded={false}
+                  className="md:bg-white shadow-lg  bg-secondary text-white md:text-secondary p-4 h-[200px] w-[220px] flex items-center justify-center hover:shadow-xl"
+                >
+                  <p className="md:w-1/2">Local Recruitment</p>
+                </Card>
+              </NextLink>
               <Card
                 shadow={false}
                 padded={false}
@@ -304,25 +344,39 @@ const Home = () => {
               >
                 <p className="md:w-1/2">Study Abroad</p>
               </Card>
+              <NextLink
+                href={{
+                  pathname: "/vacancies",
+                  query: { section: "standard-test-section" },
+                }}
+              >
+                <Card
+                  shadow={false}
+                  padded={false}
+                  className="bg-primary  p-4 h-[200px] hidden md:flex items-center justify-center"
+                >
+                  <p className="md:w-1/2 text-white">
+                    Standardized test (OET, GMAT, GRE, TOFEL, IELT)
+                  </p>
+                </Card>
+              </NextLink>
+            </div>
+            <NextLink
+              href={{
+                pathname: "/vacancies",
+                query: { section: "standard-test-section" },
+              }}
+            >
               <Card
                 shadow={false}
                 padded={false}
-                className="bg-primary  p-4 h-[200px] hidden md:flex items-center justify-center"
+                className="md:bg-primary bg-gray  p-4 h-[200px] flex md:hidden items-center justify-center shadow-lg hover:shadow-xl"
               >
-                <p className="md:w-1/2 text-white">
+                <p className="md:w-1/2 md:text-white text-secondary">
                   Standardized test (OET, GMAT, GRE, TOFEL, IELT)
                 </p>
               </Card>
-            </div>
-            <Card
-              shadow={false}
-              padded={false}
-              className="md:bg-primary bg-gray  p-4 h-[200px] flex md:hidden items-center justify-center shadow-lg hover:shadow-xl"
-            >
-              <p className="md:w-1/2 md:text-white text-secondary">
-                Standardized test (OET, GMAT, GRE, TOFEL, IELT)
-              </p>
-            </Card>
+            </NextLink>
           </div>
           <div className="hidden md:flex w-2/5 h-[500px] my-auto z-0">
             <Image
@@ -353,11 +407,19 @@ const Home = () => {
             <div className="flex flex-col items-start justify-start gap-4 mx-8 mt-4">
               <Heading variant="h6">ND Healthcare </Heading>
               <p className="text-secondary-gray text-sm">
-              NDR is introducing an online OET class tailored around your needs{" "}
+                NDR is introducing an online OET class tailored around your
+                needs{" "}
               </p>
-              <Button size="lg" className="px-8" rounded>
+              <NextButton
+                as={Link}
+                href="/vacancies"
+                showAnchorIcon
+                size="lg"
+                className="px-8 rounded-full"
+                color="primary"
+              >
                 Read more
-              </Button>
+              </NextButton>
             </div>
           </Card>
           <div className="w-4/12  h-[600px] hidden md:flex flex-col items-start justify-between pt-8 ">
@@ -368,12 +430,19 @@ const Home = () => {
             >
               <Heading variant="h6">News Update</Heading>
               <p className="text-secondary-gray text-sm">
-              Primary school teachers and secondary teachers with a 
-                recent teaching experience{" "}
+                Primary school teachers and secondary teachers with a recent
+                teaching experience{" "}
               </p>
-              <Button size="lg" className="px-8" rounded>
+              <NextButton
+                as={Link}
+                href="/vacancies"
+                showAnchorIcon
+                size="lg"
+                className="px-8 rounded-full"
+                color="primary"
+              >
                 Read more
-              </Button>
+              </NextButton>
             </Card>
             <Card
               shadow
@@ -382,12 +451,19 @@ const Home = () => {
             >
               <Heading variant="h6">News Update</Heading>
               <p className="text-secondary-gray text-sm">
-              A school in UK is recruiting Geography teacher.
-                Deadline 25/03/2024{" "}
+                A school in UK is recruiting Geography teacher. Deadline
+                25/03/2024{" "}
               </p>
-              <Button size="lg" className="px-8" rounded>
+              <NextButton
+                as={Link}
+                href="/vacancies"
+                showAnchorIcon
+                size="lg"
+                className="px-8 rounded-full"
+                color="primary"
+              >
                 Read more
-              </Button>
+              </NextButton>
             </Card>
           </div>
         </div>
@@ -421,8 +497,8 @@ const Home = () => {
           >
             <Card className="bg-primary w-1/2 text-white h-full pt-8 hidden md:flex flex-col items-center justify-center gap-5">
               <p className="w-3/4">
-              Subscribe to our newsletter for product updates and be the first to know about our specials and promotions
-              
+                Subscribe to our newsletter for product updates and be the first
+                to know about our specials and promotions
               </p>
               <Input
                 className="bg-white rounded-full w-3/4"
@@ -435,10 +511,12 @@ const Home = () => {
                 }
                 placeholder="Enter email here..."
               />
-              
             </Card>
             <div className="md:w-1/2 w-full h-[420px] flex flex-col items-start justify-start gap-4 p-0">
-              <Heading variant="h3" className="text-secondary p-0 m-0 text-lg md:text-2xl">
+              <Heading
+                variant="h3"
+                className="text-secondary p-0 m-0 text-lg md:text-2xl"
+              >
                 Fill forms to book appointment
               </Heading>
               <Formik
@@ -560,7 +638,10 @@ const Home = () => {
                       onBlur={handleBlur}
                       variant="underlined"
                       label="Select our office"
-                      options={[{ id: "1", label: "Accra" },{ id: "1", label: "Kumasi" }]}
+                      options={[
+                        { id: "1", label: "Accra" },
+                        { id: "1", label: "Kumasi" },
+                      ]}
                     />
                     <Button
                       fullWidth
