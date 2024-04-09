@@ -14,8 +14,9 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { setKey, fromLatLng } from "react-geocode";
 import { GOOGLE_MAPS_API_KEY } from "@/resources/config";
+import { motion } from "framer-motion";
 
-const DEFAULT_LATITUDE = 5.6213 
+const DEFAULT_LATITUDE = 5.6213;
 const DEFAULT_LONGITUDE = -0.1725;
 
 setKey(GOOGLE_MAPS_API_KEY);
@@ -33,10 +34,10 @@ interface IMapSearchProps {
 }
 
 interface IAccraSearch {
-    className?: string
+  className?: string;
 }
 
-function AccraMapSearch({className}: IAccraSearch) {
+function AccraMapSearch({ className }: IAccraSearch) {
   const [markerPosition, setMarkerPosition] = useState<
     { lat: number; lng: number } | undefined
   >(undefined);
@@ -66,14 +67,13 @@ function AccraMapSearch({className}: IAccraSearch) {
   //   },
   // });
 
-    useEffect(() => {
-        setMarkerPosition({ lat: 5.6213, lng: -0.1725 });
-    }, [])
+  useEffect(() => {
+    setMarkerPosition({ lat: 5.6213, lng: -0.1725 });
+  }, []);
   const onMapClick = React.useCallback(
     (e: { latLng: { lat: () => any; lng: () => any } }) => {
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
-      
 
       if (setMapInfo) {
         setMapInfo({ lat: lat, lng: lng, locationAddress: "" });
@@ -96,7 +96,23 @@ function AccraMapSearch({className}: IAccraSearch) {
 
   return (
     <>
-      <div className={clsx("border-2 w-1/2 h-[550px]  rounded-xl  flex  justify-center items-center", className)}>
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            ease: "easeInOut",
+            delay: 0.2,
+            duration: 0.5,
+          },
+        }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={clsx(
+          "border-2 w-1/2 h-[550px]  rounded-xl  flex  justify-center items-center",
+          className
+        )}
+      >
         {isLoaded ? (
           <GoogleMap
             id="map"
@@ -121,7 +137,7 @@ function AccraMapSearch({className}: IAccraSearch) {
                 position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
               >
                 {placeName?.length ? (
-                  <InfoWindow 
+                  <InfoWindow
                     position={{
                       lat: markerPosition?.lat,
                       lng: markerPosition?.lng,
@@ -140,7 +156,7 @@ function AccraMapSearch({className}: IAccraSearch) {
         ) : (
           <h2 className="text-gray-400">Not Available</h2>
         )}
-      </div>
+      </motion.div>
     </>
   );
 }

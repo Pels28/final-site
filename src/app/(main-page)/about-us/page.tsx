@@ -6,8 +6,21 @@ import { TbScanEye } from "react-icons/tb";
 import styles from "../card.module.css";
 import { useState } from "react";
 import NextImage from "next/image";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
+import { fadeInUpAnimation } from "../page";
 
 const AboutUs = () => {
+  const { scrollY } = useScroll();
+  const opacityHome = useTransform(
+    scrollY,
+    [0, 200, 300, 500],
+    [1, 0.5, 0.5, 0]
+  );
+  const opacityY = useTransform(scrollY, [0, 200], [0, -100]);
+  const scaleText = useTransform(scrollY, [0, 300], [1, 1.5]);
+  const yText = useTransform(scrollY, [0, 200, 300, 500], [0, 50, 50, 300]);
+  const marginLeft = useTransform(scrollY, [0, 300], [10, 14]);
+
   const [reviews, setReviews] = useState([
     {
       id: 1,
@@ -38,18 +51,40 @@ const AboutUs = () => {
   return (
     <>
       <div className="w-screen">
-        <section className="h-[525px] overflow-hidden relative bg-[url('/images/new-about-us.jpg')] bg-no-repeat bg-center bg-cover opacity-90">
-          <p className="md:text-9xl text-7xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-10 mb-0 pb-0">
+        <motion.section
+          style={{ opacity: opacityHome, y: opacityY }}
+          className="md:h-[510px] h-[500px] overflow-hidden relative bg-[url('/images/new-about-us.jpg')] bg-no-repeat bg-center bg-cover opacity-90"
+        >
+          <motion.p className="md:text-9xl text-7xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-10 mb-0 pb-0">
             About Us
-          </p>
-        </section>
+          </motion.p>
+        </motion.section>
         {/* Code goes here below here */}
 
         <section className="grid md:grid-cols-2  h-auto md:h-[900px] px-4  md:px-10 pb-7 pt-20 gap-12 bg-[#F1F5F5] mb-10">
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                staggerChildren: 0.5,
+                ease: "easeInOut",
+                delay: 0.2,
+                duration: 0.5,
+              },
+            }}
+            viewport={{ once: true, amount: 0.5 }}
             className={`images_left grid grid-cols-2 grid-rows-2 gap-2 md:gap-1 bg-[#ffffff] rounded-3xl h-3/4 px-2 md:px-5 pt-5 ${styles.card}`}
           >
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className={`grid grid-cols-1 w-[99%] h-[230px] ${styles.card} ${styles.innercard}`}
             >
               <NextImage
@@ -61,8 +96,15 @@ const AboutUs = () => {
                 src="/images/image01_left.jpg"
                 alt={"image01"}
               />
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className={`grid  grid-cols-1 w-[99%] h-[230px] ${styles.card} ${styles.innercard}`}
             >
               {/* <Image
@@ -82,9 +124,16 @@ const AboutUs = () => {
                 src="/images/image02_right.jpg"
                 alt={"image02"}
               />
-            </div>
+            </motion.div>
 
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className={`col-span-2 row-span-1 mb-2 md:-mb-10  ${styles.innercard}`}
             >
               <Image
@@ -94,52 +143,129 @@ const AboutUs = () => {
                 src="/images/image03_span_bottom.jpg"
                 alt={"image03"}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <div className="aboutus_info ">
             <div className="coreValues space-y-4">
-              <Heading variant="h5">More About Us</Heading>
-              <Heading variant="h2">Our Core Values</Heading>
-              <p className="text-secondary-gray pb-9 text-sm md:text-base">
+              <motion.h5
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <Heading variant="h5"> More About Us</Heading>
+              </motion.h5>
+              <motion.h2
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <Heading variant="h2"> Our Core Values</Heading>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="text-secondary-gray pb-9 text-sm md:text-base"
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore ma gna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure do
-              </p>
+              </motion.p>
             </div>
 
             <div className="missionStatement space-y-4">
-              <Heading variant="h2">Mission Statement</Heading>
-              <p className="text-secondary-gray pb-4 text-sm md:text-base">
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <Heading variant="h2">Mission Statement</Heading>
+              </motion.div>
+
+              <motion.p
+                variants={fadeInUpAnimation}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.5 }}
+                className="text-secondary-gray pb-4 text-sm md:text-base"
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore ma gna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure do
-              </p>
-              <p className="text-secondary-gray text-sm md:text-base">
+              </motion.p>
+              <motion.p
+                variants={fadeInUpAnimation}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.5 }}
+                className="text-secondary-gray text-sm md:text-base"
+              >
                 eiusmod tempor incididunt ut labore et dolore ma gna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure do
-              </p>
+              </motion.p>
             </div>
           </div>
         </section>
 
         {/* <section className="visionStatement mt-10 bg-secondary w-screen px-4 md:px-10 pb-8 md:bg-[#F1F5F5]"> */}
         <div className="flex flex-row px-4 md:px-14 pt-3 pb-9 items-start  md:items-start justify-between md:justify-start bg-[#ffffff] rounded-2xl">
-          <div className="eyeIcon pt-3 md:pt-0">
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="eyeIcon pt-3 md:pt-0"
+          >
             <TbScanEye
               className="w-5 h-5 md:w-10 md:h-10"
               fill="#E9722B"
               color="#E9722B"
             />
-          </div>
+          </motion.div>
           <div className="textNinfo mx-5 md:mx-16">
-            <Heading variant="h3" className="pb-2 pt-1">
-              Vision Statement
-            </Heading>
-            <p className="pb-9 text-sm md:text-base">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <Heading variant="h3" className="pb-2 pt-1">
+                Vision Statement
+              </Heading>
+            </motion.div>
+            <motion.p
+              variants={fadeInUpAnimation}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className="pb-9 text-sm md:text-base"
+            >
               enestado de desarrollo. Muchas versioneshan evolucion ado a través
               de los añosalgunas veces por accidente, otras veces apropósito
               (por ejemplo insertándole humor y cosas por el estilo). leer.
@@ -147,28 +273,57 @@ const AboutUs = () => {
               Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de
               Lorem Ipsum va a dar por resultado muchos sitios web que usan este
               texto si se encuentran ene stado de
-            </p>
-            <p className="text-sm md:text-base">
+            </motion.p>
+            <motion.p
+              variants={fadeInUpAnimation}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-sm md:text-base"
+            >
               apropósito (por ejemplo insertándole humor y cosas por el estilo).
               leer. Muchos paquetes de autoedicióny editores de páginas web usan
               el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda
               de Lorem Ipsum va a dar por resultado muchos sitios web que usan
               este texto si se encuentran ene stado de
-            </p>
+            </motion.p>
           </div>
-          <div className="Null_icon">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="Null_icon"
+          >
             <MdOutlineUnfoldMore className="w-8 h-auto color-[E9722B]" />
-          </div>
+          </motion.div>
         </div>
         {/* </section> */}
         {/* Review Section */}
         <section className="bg-gray-100 px-24 py-8">
-          <Heading variant="h2" className="text-center mb-6">
-            Customer Reviews
-          </Heading>
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <Heading variant="h2" className="text-center mb-6">
+              Customer Reviews
+            </Heading>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {reviews.map((review) => (
-              <div
+              <motion.div
+                variants={fadeInUpAnimation}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.5 }}
                 key={review.id}
                 className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center"
               >
@@ -200,7 +355,7 @@ const AboutUs = () => {
                   </div>
                   <span className="text-gray-500 ml-1">({review.rating})</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

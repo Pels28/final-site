@@ -14,6 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { GOOGLE_MAPS_API_KEY } from "@/resources/config";
 import NextBar from "./sections/NextBar";
 import { Metadata } from "next";
+import Head from "next/head";
 
 // export const metadata: Metadata = {
 //   title: "North Devon Recruitment",
@@ -77,13 +78,18 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
+      <Head>
+        <meta
+          title="north devon recuitment"
+          name="north devon recruitment"
+          content="It’s a recruitment company for international jobs and local jobs mainly health And they are into study abroad and writing of tests"
+        />
         <script
           defer
           async
           src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`}
         ></script>
-      </head>
+      </Head>
       <body className={Poppins.className}>
         <NextProvider>
           <main className="light text-foreground bg-background min-w-[1285px] w-screen min-h-screen font-poppins">

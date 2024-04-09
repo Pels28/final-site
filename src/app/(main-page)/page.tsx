@@ -24,6 +24,17 @@ import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import NextLink from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
+
+export const fadeInUpAnimation: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  show: {
+    opacity: 1,
+    y: 0,
+
+    transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+  },
+};
 
 const Home = () => {
   const [mapInfo, setMapInfo] = useState<{
@@ -34,9 +45,6 @@ const Home = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     AutoScroll({ stopOnInteraction: false }),
   ]);
-
-  const pathname = usePathname();
-  const router = useRouter();
 
   // const containerRef = useRef<HTMLDivElement>(null);
 
@@ -56,12 +64,21 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { scrollY } = useScroll();
+  const opacityHome = useTransform(
+    scrollY,
+    [0, 200, 300, 500],
+    [1, 0.5, 0.5, 0]
+  );
+  const opacityY = useTransform(scrollY, [0, 200], [1, -100]);
+
   return (
     <div className="w-screen overflow-hidden">
       <>
-        <section
-          className={`h-[600px] overflow-hidden relative bg-[url('/images/portrait-nurse.jpg')] bg-no-repeat bg-center bg-auto md:bg-cover opacity-90 w-[100vw] `}
-        ></section>
+        <motion.section
+          style={{ opacity: opacityHome, y: opacityY }}
+          className={`md:h-[600px] h-[500px] overflow-hidden relative md:bg-[url('/images/portrait-nurse.jpg')] bg-[url('/images/mobile.jpg')] bg-no-repeat bg-center bg-auto md:bg-cover opacity-90 w-[100vw] `}
+        ></motion.section>
 
         <div className="sm:w-[94%] text-xs sm:text-[14px] w-[600px] mx-2  sm:mx-auto my-8 sm:px-10">
           <div className="flex items-center justify-start sm:justify-center px-6 mx-auto">
@@ -129,14 +146,23 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="bg-gray w-full h-[900px]  p-8 flex flex-col md:flex-row items-start md:items-center justify-start gap-8">
+        <div className="bg-gray w-full h-[800px]  p-8 flex flex-col md:flex-row items-start md:items-center justify-start gap-8">
           <Card
             shadow
             rounded
             padded={false}
             className="p-4 w-full flex justify-start md:w-7/12  md:flex md:flex-row md:items-start md:justify-start gap-4 cursor-pointer"
           >
-            <div className="w-full relative md:w-1/2 h-full md:h-1/2 px-4 pb-2 flex flex-col  md:items-center md:justify-center  gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="w-full relative md:w-1/2 h-full md:h-1/2 px-4 pb-2 flex flex-col  md:items-center md:justify-center  gap-2"
+            >
               <Image
                 isBurred
                 isZoomed
@@ -152,8 +178,17 @@ const Home = () => {
                 alt="teachers"
                 className="hidden md:flex"
               />
-            </div>
-            <div className="hidden md:flex w-1/2 flex-col h-full p-0">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="hidden md:flex w-1/2 flex-col h-full p-0"
+            >
               <Image
                 isBurred
                 isZoomed
@@ -166,98 +201,180 @@ const Home = () => {
               <Image
                 src="/images/plane-path.png"
                 alt="plane"
-                className="mt-[-80px] p-0 w-[400px] h-[300px]"
+                className=" p-0 w-[400px] h-[100px]"
               />
               {/* <TbPlaneTilt fill="#E9722B" color="#E9722B" className="mt-7 h-10 w-10 flex justify-center"/> */}
-            </div>
+            </motion.div>
           </Card>
-          <div className="w-full md:w-1/2 h-[550px] flex flex-col items-start justify-start gap-4">
-            <p className="font-semibold">About Us</p>
-            <Heading variant="h3">What is Our Mission?</Heading>
-            <p className="text-secondary-gray text-sm">
+          <motion.div
+            variants={fadeInUpAnimation}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="w-full md:w-1/2 h-[550px] flex flex-col items-start justify-start gap-4"
+          >
+            <motion.p
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="font-semibold"
+            >
+              About Us
+            </motion.p>
+            <motion.h3
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-xl font-bold"
+            >
+              What is Our Mission?
+            </motion.h3>
+            <motion.p
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-secondary-gray text-sm"
+            >
               Our mission is to empower individuals worldwide by facilitating
               access to exceptional educational opportunities, career pathways,
               and healthcare services. Our commitment extends to guiding
               aspiring students towards their academic goals,...
-            </p>
-            <p className="text-secondary-gray text-sm mt-4">
+            </motion.p>
+            <motion.p
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-secondary-gray text-sm mt-4"
+            >
               Our vision is to be the premier global recruitment agency,
               renowned for our commitment to excellence in study abroad
               programs, international and local recruitment, healthcare
               staffing, and standardized test preparation. We aspire to be the
               catalysts of transformational journeys,...
-            </p>
+            </motion.p>
 
-            <NextButton
-              href="/about-us"
-              as={Link}
-              showAnchorIcon
-              color="primary"
-              size="lg"
-              className="px-8 mt-5 rounded-full"
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
             >
-              Read more
-            </NextButton>
-          </div>
+              <NextButton
+                href="/about-us"
+                as={Link}
+                showAnchorIcon
+                color="primary"
+                size="lg"
+                className="px-8 mt-5 rounded-full mb-4"
+              >
+                Read more
+              </NextButton>
+            </motion.div>
+          </motion.div>
         </div>
         <div className="w-full overflow-hidden p-8 md:flex md:flex-row md:items-center md:justify-start gap-4 mb-0">
-          <div className="w-full md:w-5/12 pl-8 h-[450px] flex flex-col items-start justify-start gap-4">
-            <p className="font-semibold">Our Services</p>
-            <Heading variant="h3">How we work</Heading>
-            <p className="text-secondary-gray text-sm">
+          <motion.div
+            variants={fadeInUpAnimation}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="w-full md:w-5/12 pl-8 h-[450px] flex flex-col items-start justify-start gap-4"
+          >
+            <motion.p
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="font-semibold"
+            >
+              Our Services
+            </motion.p>
+            <motion.h3
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-xl font-bold"
+            >
+              How we work
+            </motion.h3>
+            <motion.p
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-secondary-gray text-sm"
+            >
               We match the right candidates with the right job opportunities,
               providing value to both clients and candidates throughout the
               recruitment process.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-row items-center justify-start gap-3">
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="flex flex-row items-center justify-start gap-3"
+            >
               <IoMdCheckmarkCircleOutline
                 fill="#E9722B"
                 color="#E9722B"
                 className="w-8 h-8"
               />
               <p className="font-semibold">600 Offers</p>
-            </div>
-            <div className="flex flex-row items-center justify-start gap-3">
+            </motion.div>
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="flex flex-row items-center justify-start gap-3"
+            >
               <IoMdCheckmarkCircleOutline
                 fill="#E9722B"
                 color="#E9722B"
                 className="w-8 h-8"
               />
               <p className="font-semibold">5+ Years Experience</p>
-            </div>
-            <div className="flex flex-row items-center justify-start gap-3">
+            </motion.div>
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="flex flex-row items-center justify-start gap-3"
+            >
               <IoMdCheckmarkCircleOutline
                 fill="#E9722B"
                 color="#E9722B"
                 className="w-8 h-8"
               />
               <p className="font-semibold">20+ Team Members</p>
-            </div>
-            <div className="flex flex-row items-center justify-start gap-3">
+            </motion.div>
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className="flex flex-row items-center justify-start gap-3"
+            >
               <IoMdCheckmarkCircleOutline
                 fill="#E9722B"
                 color="#E9722B"
                 className="w-8 h-8"
               />
               <p className="font-semibold">700+ Satisfied Customers</p>
-            </div>
+            </motion.div>
 
             {/* <Button size="lg" className="px-8" rounded>
               Get in touch
             </Button> */}
-            <div className=" hidden md:flex flex-row items-center justify-start gap-3 mb-9">
+            <motion.div
+              variants={fadeInUpAnimation}
+              viewport={{ once: true, amount: 0.5 }}
+              className=" hidden md:flex flex-row items-center justify-start gap-3 mb-9"
+            >
               <Image width={100} height={100} src="/images/bc.jpg"></Image>
               <small> British Council approved registration centre</small>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           <Card
             shadow={false}
             rounded
             padded={false}
             className={`p-4 mt-8 md:mb-8 w-full h-[500px] ${styles.card} flex flex-col  md:items-center md:justify-start justify-center gap-4 cursor-pointer`}
           >
-            <div className={` h-full p-0 ${styles.card} ${styles.innercard}`}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              className={` h-full p-0 ${styles.card} ${styles.innercard}`}
+            >
               <Image
                 isZoomed
                 alt="teachers"
@@ -265,8 +382,15 @@ const Home = () => {
                 className={`w-[550px]`}
               />
               {/* <TbPlaneTilt fill="#E9722B" color="#E9722B" className="mt-7 h-10 w-10 flex justify-center"/> */}
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className={`w-[470px] ${styles.innercard}  mt-[-80px] h-full p-0 pb-2 hidden md:flex flex-row items-start justify-start gap-2 z-10`}
             >
               <Image
@@ -281,16 +405,39 @@ const Home = () => {
                 alt="class"
                 className={`w-[500px] h-[150px]`}
               />
-            </div>
+            </motion.div>
           </Card>
         </div>
         <div className="w-full flex flex-row gap-0 mb-4">
           <div className="w-full bg-gray md:w-3/4 md:h-[600px] overflow-hidden md:pl-10 py-6 flex flex-col items-center my-auto justify-center gap-8 md:bg-[url('/images/sunset.jpg')] bg-no-repeat bg-center bg-cover">
             <div className="w-full flex flex-col items-start justify-start md:flex-row md:items-center md:justify-between mt-20 gap-4">
-              <p className="relative md:w-5/12 text-secondary md:text-white text-left md:text-2xl pl-10">
+              <motion.p
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="relative md:w-5/12 text-secondary md:text-white text-left md:text-2xl pl-10"
+              >
                 The Services we provide include the following:
-              </p>
-              <div className="flex w-[100%] px-4 mx-auto flex-row items-start md:items-center justify-start gap-4 md:absolute left-[480px] z-10">
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="flex w-[100%] px-4 mx-auto flex-row items-start md:items-center justify-start gap-4 md:absolute left-[480px] z-10"
+              >
                 <NextLink
                   href={{
                     pathname: "/vacancies",
@@ -320,9 +467,15 @@ const Home = () => {
                     <p className="w-1/2"> ND Healthcare</p>
                   </Card>
                 </NextLink>
-              </div>
+              </motion.div>
             </div>
-            <div className="w-full grid grid-cols-2  md:flex md:flex-row px-4 md:items-start md:justify-start gap-2 md:gap-5 md:pt-16 md:px-0 md:pl-10">
+            <motion.div
+              variants={fadeInUpAnimation}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className="w-full grid grid-cols-2  md:flex md:flex-row px-4 md:items-start md:justify-start gap-2 md:gap-5 md:pt-16 md:px-0 md:pl-10"
+            >
               <NextLink
                 href={{
                   pathname: "/vacancies",
@@ -340,7 +493,7 @@ const Home = () => {
               <Card
                 shadow={false}
                 padded={false}
-                className="bg-white md:text-secondary  p-4 h-[200px] w- [220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                className="bg-white md:text-secondary  p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
               >
                 <p className="md:w-1/2">Study Abroad</p>
               </Card>
@@ -360,23 +513,38 @@ const Home = () => {
                   </p>
                 </Card>
               </NextLink>
-            </div>
-            <NextLink
-              href={{
-                pathname: "/vacancies",
-                query: { section: "standard-test-section" },
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  staggerChildren: 0.5,
+                  ease: "easeInOut",
+                  delay: 0.2,
+                  duration: 0.5,
+                },
               }}
+              viewport={{ once: true, amount: 0.5 }}
             >
-              <Card
-                shadow={false}
-                padded={false}
-                className="md:bg-primary bg-gray  p-4 h-[200px] flex md:hidden items-center justify-center shadow-lg hover:shadow-xl"
+              <NextLink
+                href={{
+                  pathname: "/vacancies",
+                  query: { section: "standard-test-section" },
+                }}
               >
-                <p className="md:w-1/2 md:text-white text-secondary">
-                  Standardized test (OET, GMAT, GRE, TOFEL, IELT)
-                </p>
-              </Card>
-            </NextLink>
+                <Card
+                  shadow={false}
+                  padded={false}
+                  className="md:bg-primary bg-gray  p-4 h-[200px] flex md:hidden items-center justify-center shadow-lg hover:shadow-xl"
+                >
+                  <p className="md:w-1/2 md:text-white text-secondary">
+                    Standardized test (OET, GMAT, GRE, TOFEL, IELT)
+                  </p>
+                </Card>
+              </NextLink>
+            </motion.div>
           </div>
           <div className="hidden md:flex w-2/5 h-[500px] my-auto z-0">
             <Image
@@ -393,34 +561,75 @@ const Home = () => {
             padded={false}
             className="md:pl-12 pt-0 mt-0 md:w-7/12 w-full h-[640px] flex flex-col items-start justify-start gap-4 cursor-pointer"
           >
-            <Heading variant="h3" className="text-left w-screen">
+            <motion.h3
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                  staggerChildren: 0.5,
+                  ease: "easeInOut",
+                  delay: 0.2,
+                  duration: 0.5,
+                },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-left w-screen text-xl font-bold"
+            >
               Vacancies and Events
-            </Heading>
+            </motion.h3>
 
-            <Image
-              isBurred
-              isZoomed
-              src="/images/book.jpg"
-              className="h-[420px] w-[100vw]"
-              alt="books"
-            />
-            <div className="flex flex-col items-start justify-start gap-4 mx-8 mt-4">
-              <Heading variant="h6">ND Healthcare </Heading>
-              <p className="text-secondary-gray text-sm">
-                NDR is introducing an online OET class tailored around your
-                needs{" "}
-              </p>
-              <NextButton
-                as={Link}
-                href="/vacancies"
-                showAnchorIcon
-                size="lg"
-                className="px-8 rounded-full"
-                color="primary"
+            <motion.div
+              variants={fadeInUpAnimation}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <Image
+                isBurred
+                isZoomed
+                src="/images/book.jpg"
+                className="h-[420px] w-[100vw]"
+                alt="books"
+              />
+            </motion.div>
+            <motion.div
+              variants={fadeInUpAnimation}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.5 }}
+              className="flex flex-col items-start justify-start gap-4 mx-8 mt-4"
+            >
+              <motion.h6
+                variants={fadeInUpAnimation}
+                viewport={{ once: true, amount: 0.5 }}
               >
-                Read more
-              </NextButton>
-            </div>
+                ND Healthcare
+              </motion.h6>
+              <motion.p
+                variants={fadeInUpAnimation}
+                viewport={{ once: false, amount: 0.5 }}
+                className="text-secondary-gray text-sm"
+              >
+                NDR is introducing an online OET class tailored around your
+                needs
+              </motion.p>
+              <motion.div
+                variants={fadeInUpAnimation}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <NextButton
+                  as={Link}
+                  href="/vacancies"
+                  showAnchorIcon
+                  size="lg"
+                  className="px-8 rounded-full"
+                  color="primary"
+                >
+                  Read more
+                </NextButton>
+              </motion.div>
+            </motion.div>
           </Card>
           <div className="w-4/12  h-[600px] hidden md:flex flex-col items-start justify-between pt-8 ">
             <Card
@@ -428,42 +637,130 @@ const Home = () => {
               padded
               className="flex flex-col items-start justify-start gap-5"
             >
-              <Heading variant="h6">News Update</Heading>
-              <p className="text-secondary-gray text-sm">
-                Primary school teachers and secondary teachers with a recent
-                teaching experience{" "}
-              </p>
-              <NextButton
-                as={Link}
-                href="/vacancies"
-                showAnchorIcon
-                size="lg"
-                className="px-8 rounded-full"
-                color="primary"
+              <motion.h6
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
               >
-                Read more
-              </NextButton>
+                News Update
+              </motion.h6>
+              <motion.p
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="text-secondary-gray text-sm"
+              >
+                Primary school teachers and secondary teachers with a recent
+                teaching experience
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <NextButton
+                  as={Link}
+                  href="/vacancies"
+                  showAnchorIcon
+                  size="lg"
+                  className="px-8 rounded-full"
+                  color="primary"
+                >
+                  Read more
+                </NextButton>
+              </motion.div>
             </Card>
             <Card
               shadow
               padded
               className="flex flex-col items-start justify-start gap-5"
             >
-              <Heading variant="h6">News Update</Heading>
-              <p className="text-secondary-gray text-sm">
-                A school in UK is recruiting Geography teacher. Deadline
-                25/03/2024{" "}
-              </p>
-              <NextButton
-                as={Link}
-                href="/vacancies"
-                showAnchorIcon
-                size="lg"
-                className="px-8 rounded-full"
-                color="primary"
+              <motion.h6
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
               >
-                Read more
-              </NextButton>
+                News Update
+              </motion.h6>
+              <motion.p
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="text-secondary-gray text-sm"
+              >
+                A school in UK is recruiting Geography teacher. Deadline
+                25/03/2024
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <NextButton
+                  as={Link}
+                  href="/vacancies"
+                  showAnchorIcon
+                  size="lg"
+                  className="px-8 rounded-full"
+                  color="primary"
+                >
+                  Read more
+                </NextButton>
+              </motion.div>
             </Card>
           </div>
         </div>
@@ -488,7 +785,13 @@ const Home = () => {
           />
         </div>
 
-        <div className="bg-gray w-full h-[650px] p-2 md:p-10 flex justify-center mt-4">
+        <motion.div
+          variants={fadeInUpAnimation}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+          className="bg-gray w-full h-[650px] p-2 md:p-10 flex justify-center mt-4"
+        >
           <Card
             shadow
             rounded
@@ -512,7 +815,7 @@ const Home = () => {
                 placeholder="Enter email here..."
               />
             </Card>
-            <div className="md:w-1/2 w-full h-[420px] flex flex-col items-start justify-start gap-4 p-0">
+            <div className="md:w-1/2 w-full h-[420px] flex flex-col items-start justify-start gap-4 p-0 pb-5">
               <Heading
                 variant="h3"
                 className="text-secondary p-0 m-0 text-lg md:text-2xl"
@@ -555,7 +858,10 @@ const Home = () => {
                   setFieldError,
                   handleSubmit,
                 }) => (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-3 pb-4"
+                  >
                     <Input
                       required
                       name="name"
@@ -566,7 +872,7 @@ const Home = () => {
                       label="Enter name"
                       error={touched.name ? errors.name : undefined}
                     />
-                    <div className="w-full flex flex-row items-start gap-4">
+                    <div className="w-full space-y-4 md:space-y-0 md:flex md:flex-row md:items-start md:gap-4">
                       <Input
                         name="email"
                         value={values.email}
@@ -589,19 +895,8 @@ const Home = () => {
                         onBlur={handleBlur}
                         error={touched.phone ? errors.phone : undefined}
                       />
-
-                      {/* <Input
-                      name="phone"
-                      value={values.phone}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={touched.phone ? errors.phone : undefined}
-                      required
-                      label="Phone"
-                      variant="underlined"
-                    /> */}
                     </div>
-                    <div className="w-full flex flex-row items-start gap-4">
+                    <div className="w-full space-y-4 md:space-y-0 md:flex md:flex-row md:items-start md:gap-4">
                       <DateInput
                         name="date"
                         value={values.date ?? null}
@@ -631,18 +926,20 @@ const Home = () => {
                         rangeVariant="start"
                       />
                     </div>
-                    <Select
-                      // required
-                      name="office"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      variant="underlined"
-                      label="Select our office"
-                      options={[
-                        { id: "1", label: "Accra" },
-                        { id: "1", label: "Kumasi" },
-                      ]}
-                    />
+                    <div className="mb-2">
+                      <Select
+                        // required
+                        name="office"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        variant="underlined"
+                        label="Select our office"
+                        options={[
+                          { id: "1", label: "Accra" },
+                          { id: "1", label: "Kumasi" },
+                        ]}
+                      />
+                    </div>
                     <Button
                       fullWidth
                       type="submit"
@@ -657,7 +954,7 @@ const Home = () => {
               </Formik>
             </div>
           </Card>
-        </div>
+        </motion.div>
         {/* <MapSearch /> */}
         {/* <Chatbot /> */}
       </>

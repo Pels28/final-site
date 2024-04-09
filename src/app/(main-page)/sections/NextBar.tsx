@@ -38,8 +38,6 @@ const TABS = [
 ];
 
 export default function NextBar() {
-
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("/");
   const pathname = usePathname();
@@ -136,6 +134,9 @@ export default function NextBar() {
               isActive={pathname === item.path}
               className=""
               key={`${item}-${index}`}
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
             >
               <Link
                 // color={

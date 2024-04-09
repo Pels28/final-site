@@ -14,6 +14,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { setKey, fromLatLng } from "react-geocode";
 import { GOOGLE_MAPS_API_KEY } from "@/resources/config";
+import {motion} from "framer-motion"
 
 const DEFAULT_LATITUDE = 6.6812;
 const DEFAULT_LONGITUDE = -1.6267;
@@ -93,7 +94,17 @@ function KumasiMapSearch() {
 
   return (
     <>
-      <div className="border-2 w-1/2 h-[550px]  rounded-xl  flex  justify-center items-center">
+      <motion.div  initial={{ opacity: 0, x: 100 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                ease: "easeInOut",
+                delay: 0.2,
+                duration: 0.5,
+              },
+            }}
+            viewport={{ once: true, amount: 0.5 }} className="border-2 w-1/2 h-[550px]  rounded-xl  flex  justify-center items-center">
         {isLoaded ? (
           <GoogleMap
             id="map"
@@ -137,7 +148,7 @@ function KumasiMapSearch() {
         ) : (
           <h2 className="text-gray-400">Not Available</h2>
         )}
-      </div>
+      </motion.div>
     </>
   );
 }
