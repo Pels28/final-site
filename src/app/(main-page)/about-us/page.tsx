@@ -7,7 +7,7 @@ import styles from "../card.module.css";
 import { useState } from "react";
 import NextImage from "next/image";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
-import { fadeInUpAnimation } from "../page";
+// import { fadeInUpAnimation } from "../page";
 
 const AboutUs = () => {
   const { scrollY } = useScroll();
@@ -201,9 +201,16 @@ const AboutUs = () => {
               </motion.div>
 
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
                 className="text-secondary-gray pb-4 text-sm md:text-base"
               >
@@ -213,9 +220,16 @@ const AboutUs = () => {
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure do
               </motion.p>
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
                 className="text-secondary-gray text-sm md:text-base"
               >
@@ -260,9 +274,12 @@ const AboutUs = () => {
               </Heading>
             </motion.div>
             <motion.p
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="pb-9 text-sm md:text-base"
             >
@@ -275,9 +292,12 @@ const AboutUs = () => {
               texto si se encuentran ene stado de
             </motion.p>
             <motion.p
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-sm md:text-base"
             >
@@ -320,9 +340,16 @@ const AboutUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {reviews.map((review) => (
               <motion.div
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
                 key={review.id}
                 className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center"

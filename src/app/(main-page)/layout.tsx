@@ -74,7 +74,7 @@ export default function RootLayout({
     }
   }, [pathname, activeTab]);
 
-  console.log(pathname);
+  
 
   return (
     <html lang="en">

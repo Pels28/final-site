@@ -25,15 +25,15 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import NextLink from "next/link";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 
-export const fadeInUpAnimation: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  show: {
-    opacity: 1,
-    y: 0,
+// export const fadeInUpAnimation: Variants = {
+//   hidden: { opacity: 0, y: 50 },
+//   show: {
+//     opacity: 1,
+//     y: 0,
 
-    transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
-  },
-};
+//     transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+//   },
+// };
 
 const OurServices = () => {
   const [mapInfo, setMapInfo] = useState<{
@@ -202,28 +202,46 @@ const OurServices = () => {
             </motion.div>
           </Card>
           <motion.div
-            variants={fadeInUpAnimation}
-            initial="hidden"
-            whileInView="show"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+            }}
             viewport={{ once: true, amount: 0.5 }}
             className="w-full md:w-1/2 h-[550px] flex flex-col items-start justify-start gap-4"
           >
             <motion.p
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="font-semibold"
             >
               About Us
             </motion.p>
             <motion.h3
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-xl font-bold"
             >
               What is Our Mission?
             </motion.h3>
             <motion.p
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-secondary-gray text-sm"
             >
@@ -233,7 +251,12 @@ const OurServices = () => {
               aspiring students towards their academic goals,...
             </motion.p>
             <motion.p
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-secondary-gray text-sm mt-4"
             >
@@ -245,7 +268,12 @@ const OurServices = () => {
             </motion.p>
 
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
             >
               <NextButton
@@ -266,29 +294,46 @@ const OurServices = () => {
           ref={containerRef}
         >
           <motion.div
-            variants={fadeInUpAnimation}
-            initial="hidden"
-            whileInView="show"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+            }}
             viewport={{ once: true, amount: 0.5 }}
             className="w-full md:w-5/12 pl-8 h-[450px] flex flex-col items-start justify-start gap-4"
           >
             <motion.p
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="font-semibold"
-              
             >
               Our Services
             </motion.p>
             <motion.h3
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-xl font-bold"
             >
               How we work
             </motion.h3>
             <motion.p
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="text-secondary-gray text-sm"
             >
@@ -298,7 +343,12 @@ const OurServices = () => {
             </motion.p>
 
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="flex flex-row items-center justify-start gap-3"
             >
@@ -310,7 +360,12 @@ const OurServices = () => {
               <p className="font-semibold">600 Offers</p>
             </motion.div>
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="flex flex-row items-center justify-start gap-3"
             >
@@ -322,7 +377,12 @@ const OurServices = () => {
               <p className="font-semibold">5+ Years Experience</p>
             </motion.div>
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="flex flex-row items-center justify-start gap-3"
             >
@@ -334,7 +394,12 @@ const OurServices = () => {
               <p className="font-semibold">20+ Team Members</p>
             </motion.div>
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className="flex flex-row items-center justify-start gap-3"
             >
@@ -350,7 +415,12 @@ const OurServices = () => {
               Get in touch
             </Button> */}
             <motion.div
-              variants={fadeInUpAnimation}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
               className=" hidden md:flex flex-row items-center justify-start gap-3 mb-9"
             >
@@ -434,8 +504,8 @@ const OurServices = () => {
                     duration: 0.5,
                   },
                 }}
-                viewport={{ once: false, amount: 0.5 }}
-                className="flex w-[100%] px-4 mx-auto flex-row items-start md:items-center justify-start gap-4 md:absolute left-[480px] z-10"
+                viewport={{ once: true, amount: 0.5 }}
+                className="md:flex w-screen md:w-[100%] grid grid-cols-2  px-4 mx-auto flex-row items-start md:items-center md:justify-start gap-4 md:absolute left-[480px] z-10"
               >
                 <NextLink
                   href={{
@@ -447,7 +517,7 @@ const OurServices = () => {
                     // onClick={() => {router.push("/vacancies#horizontal-scroll")}}
                     shadow={false}
                     padded={false}
-                    className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                    className="bg-white text-black mx-auto md:mx-0 md:p-4 h-[200px] md:w-[220px] flex  items-center justify-center shadow-lg hover:shadow-xl"
                   >
                     <p className="w-1/2">International Recruitment </p>
                   </Card>
@@ -461,7 +531,7 @@ const OurServices = () => {
                   <Card
                     shadow={false}
                     padded={false}
-                    className="bg-white text-black p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                    className="bg-white text-black p-4 h-[200px] md:w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
                   >
                     <p className="w-1/2"> ND Healthcare</p>
                   </Card>
@@ -469,11 +539,14 @@ const OurServices = () => {
               </motion.div>
             </div>
             <motion.div
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
-              className="w-full grid grid-cols-2  md:flex md:flex-row px-4 md:items-start md:justify-start gap-2 md:gap-5 md:pt-16 md:px-0 md:pl-10"
+              className="w-full grid grid-cols-2  md:flex md:flex-row px-4 md:items-start md:justify-start gap-4 md:gap-5 md:pt-16 md:px-0 md:pl-10"
             >
               <NextLink
                 href={{
@@ -484,7 +557,7 @@ const OurServices = () => {
                 <Card
                   shadow={false}
                   padded={false}
-                  className="md:bg-white shadow-lg  bg-secondary text-white md:text-secondary p-4 h-[200px] w-[220px] flex items-center justify-center hover:shadow-xl"
+                  className="md:bg-white shadow-lg  bg-secondary text-white md:text-secondary p-4 h-[200px] md:w-[220px] flex items-center justify-center hover:shadow-xl"
                 >
                   <p className="md:w-1/2">Local Recruitment</p>
                 </Card>
@@ -492,7 +565,7 @@ const OurServices = () => {
               <Card
                 shadow={false}
                 padded={false}
-                className="bg-white md:text-secondary  p-4 h-[200px] w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
+                className="bg-white md:text-secondary  p-4 h-[200px] md:w-[220px] flex items-center justify-center shadow-lg hover:shadow-xl"
               >
                 <p className="md:w-1/2">Study Abroad</p>
               </Card>
@@ -526,6 +599,7 @@ const OurServices = () => {
                 },
               }}
               viewport={{ once: true, amount: 0.5 }}
+              className="mx-2"
             >
               <NextLink
                 href={{
@@ -579,9 +653,12 @@ const OurServices = () => {
             </motion.h3>
 
             <motion.div
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
             >
               <Image
@@ -593,28 +670,58 @@ const OurServices = () => {
               />
             </motion.div>
             <motion.div
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0.5 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className="flex flex-col items-start justify-start gap-4 mx-8 mt-4"
             >
               <motion.h6
-                variants={fadeInUpAnimation}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
               >
                 ND Healthcare
               </motion.h6>
               <motion.p
-                variants={fadeInUpAnimation}
-                viewport={{ once: false, amount: 0.5 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
                 className="text-secondary-gray text-sm"
               >
                 NDR is introducing an online OET class tailored around your
                 needs
               </motion.p>
               <motion.div
-                variants={fadeInUpAnimation}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    staggerChildren: 0.5,
+                    delay: 0.2,
+                    duration: 0.5,
+                  },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
               >
                 <NextButton
@@ -785,9 +892,12 @@ const OurServices = () => {
         </div>
 
         <motion.div
-          variants={fadeInUpAnimation}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+          }}
           viewport={{ once: true, amount: 0.5 }}
           className="bg-gray w-full h-[650px] p-2 md:p-10 flex justify-center mt-4"
         >

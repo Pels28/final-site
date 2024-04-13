@@ -11,7 +11,7 @@ import AhodwoMapSearch from "../../../components/AhodwoMapSearch";
 import useEmblaCarousel from "embla-carousel-react";
 import styles from "../card.module.css";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { fadeInUpAnimation } from "../page";
+// import { fadeInUpAnimation } from "../page";
 
 const Vancancies = () => {
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
@@ -112,9 +112,12 @@ const Vancancies = () => {
               <Heading variant="h4">Are you based in the UK?</Heading>
             </motion.div>
             <motion.p
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
             >
               Are you a Nurse or a Midwife who relocated to the UK on the
@@ -122,10 +125,13 @@ const Vancancies = () => {
             </motion.p>
             <br />
             <motion.p
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: true, amount: 0.5 }}
             >
               NDR is introducing an ONLINE OET CLASS tailored around your needs.
               Tap on button to Register
@@ -385,10 +391,13 @@ const Vancancies = () => {
               </motion.div>
               <br />
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{
+                   opacity: 1,
+                   y: 0,
+                   transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                 }}
+                 viewport={{ once: true, amount: 0.5 }}
               >
                 We are into 5 standardized tests which are OET,GMAT,GRE,TOFEL
                 and IELT. Our State of the Art Training Center offers the best
@@ -398,10 +407,13 @@ const Vancancies = () => {
               <br />
 
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{
+                   opacity: 1,
+                   y: 0,
+                   transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                 }}
+                 viewport={{ once: true, amount: 0.5 }}
               >
                 GRE (Graduate Record Examination) is a general test that is
                 often required for admission to graduate programs (master&apos;s
@@ -413,10 +425,13 @@ const Vancancies = () => {
               <br />
 
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{
+                   opacity: 1,
+                   y: 0,
+                   transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                 }}
+                 viewport={{ once: true, amount: 0.5 }}
               >
                 GMAT (Graduate Management Admission) is specifically designed
                 for individuals applying to graduate management programs, such
@@ -425,19 +440,25 @@ const Vancancies = () => {
               </motion.p>
               <br />
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{
+                   opacity: 1,
+                   y: 0,
+                   transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                 }}
+                 viewport={{ once: true, amount: 0.5 }}
               >
                 IELTS (International English Language Testing System) - Measures
                 English language proficiency for non-native English speakers.
               </motion.p>
               <br />
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                }}
                 viewport={{ once: true, amount: 0.5 }}
               >
                 OET (Occupational English Test) - Assesses English language
@@ -445,10 +466,13 @@ const Vancancies = () => {
               </motion.p>
               <br />
               <motion.p
-                variants={fadeInUpAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{
+                   opacity: 1,
+                   y: 0,
+                   transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                 }}
+                 viewport={{ once: true, amount: 0.5 }}
               >
                 TOEFL (Test of English as a Foreign Language) - Another common
                 test for English language proficiency, often required for
@@ -477,10 +501,13 @@ const Vancancies = () => {
                   </Heading>
                 </motion.div>
                 <motion.div
-                  variants={fadeInUpAnimation}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.5 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: true, amount: 0.5 }}
                 >
                   <Forms />
                 </motion.div>
@@ -553,9 +580,12 @@ const Vancancies = () => {
 
             {/* Vertical Card 2 */}
             <motion.div
-              variants={fadeInUpAnimation}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
               viewport={{ once: true, amount: 0.5 }}
             >
               <Image
