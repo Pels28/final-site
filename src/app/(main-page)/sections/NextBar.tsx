@@ -142,6 +142,9 @@ export default function NextBar() {
                 // color={
                 //   index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
                 // }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
                 className={`w-full ${
                   pathname === item.path ? "text-primary" : "text-secondary"
                 }`}

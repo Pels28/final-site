@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="w-1/4 hidden md:flex text-white tex-xs font-light">
           <p className="">
           North Devon Recruitment is the trusted and best recruitment agency
-            to associate with.
+            globally.
           </p>
         </div>
         <div className="flex flex-col items-start justify-start gap-2 text-white  text-sm md:text-base">
@@ -44,7 +44,7 @@ const Footer = () => {
           <p className="text-gray font-light text-sm">
           Mail: operationsmanager@northdevonrecruitment
           </p>
-          <p className="text-gray font-light text-sm">Call: +1 972 500 4545</p>
+          <p className="text-gray font-light text-sm">Call: +(233) 530 610 013</p>
         </div>
         <div className="mb-0 flex flex-col items-end pt-7  justify-end text-white text-sm gap-2">
           <div>@2024 Copyright North Devon Recruitment</div>

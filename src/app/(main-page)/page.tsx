@@ -63,9 +63,10 @@ const Home = () => {
   return (
     <div className="w-screen overflow-hidden">
       <>
+      
         <motion.section
           style={{ opacity: opacityHome, y: opacityY }}
-          className={`md:h-[600px] h-[500px] overflow-hidden relative md:bg-[url('/images/portrait-nurse.jpg')] bg-[url('/images/mobile.jpg')] bg-no-repeat bg-center bg-auto md:bg-cover opacity-90 w-[100vw] `}
+          className={`md:h-[600px] h-[200px] overflow-hidden relative md:bg-[url('/images/portrait-nurse.jpg')] bg-[url('/images/mobile1.jpg')] bg-no-repeat bg-contain md:bg-cover opacity-90 w-[100vw] `}
         ></motion.section>
 
         <div className="sm:w-[94%] text-xs sm:text-[14px] w-[600px] mx-2  sm:mx-auto my-8 sm:px-10">
@@ -189,7 +190,7 @@ const Home = () => {
               <Image
                 src="/images/plane-path.png"
                 alt="plane"
-                className=" p-0 w-[400px] h-[100px]"
+                className="mt-[-30px] p-0 w-[400px] h-[200px]"
               />
               {/* <TbPlaneTilt fill="#E9722B" color="#E9722B" className="mt-7 h-10 w-10 flex justify-center"/> */}
             </motion.div>
@@ -241,7 +242,7 @@ const Home = () => {
               Our mission is to empower individuals worldwide by facilitating
               access to exceptional educational opportunities, career pathways,
               and healthcare services. Our commitment extends to guiding
-              aspiring students towards their academic goals,...
+              aspiring students towards their academic goals ...
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 50 }}
@@ -257,7 +258,7 @@ const Home = () => {
               renowned for our commitment to excellence in study abroad
               programs, international and local recruitment, healthcare
               staffing, and standardized test preparation. We aspire to be the
-              catalysts of transformational journeys,...
+              catalysts of transformational journeys ...
             </motion.p>
 
             <motion.div
@@ -478,7 +479,7 @@ const Home = () => {
                   transition: { ease: "easeInOut", delay: 0.2, duration: 0.5 },
                 }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="relative md:w-5/12 text-secondary md:text-white text-left md:text-2xl pl-10"
+                className="relative md:w-5/12 text-secondary md:text-white text-left md:text-2xl pl-5"
               >
                 The Services we provide include the following:
               </motion.p>
@@ -571,7 +572,7 @@ const Home = () => {
                   className="bg-primary  p-4 h-[200px] hidden md:flex items-center justify-center"
                 >
                   <p className="md:w-1/2 text-white">
-                    Standardized test (OET, GMAT, GRE, TOFEL, IELT)
+                    Standardized test (OET, GMAT, GRE, TOFEL, IELT, NCLEX)
                   </p>
                 </Card>
               </NextLink>
@@ -603,7 +604,7 @@ const Home = () => {
                   className="md:bg-primary bg-gray  p-4 h-[200px] flex md:hidden items-center justify-center shadow-lg hover:shadow-xl"
                 >
                   <p className="md:w-1/2 md:text-white text-secondary">
-                    Standardized test (OET, GMAT, GRE, TOFEL, IELT)
+                    Standardized test (OET, GMAT, GRE, TOFEL, IELT, NCLEX)
                   </p>
                 </Card>
               </NextLink>

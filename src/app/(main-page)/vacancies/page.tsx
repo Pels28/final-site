@@ -63,7 +63,7 @@ const Vancancies = () => {
   console.log(pathname);
 
   const openPdf = () => {
-    const pdfPath = "/Bandoh Kwaku.pdf";
+    const pdfPath = "/test.pdf";
 
     window.open(pdfPath, "_blank");
   };
@@ -81,9 +81,9 @@ const Vancancies = () => {
       <div className="w-screen">
         <motion.section
           style={{ opacity: opacityHome, y: opacityY }}
-          className="md:h-[510px] h-[500px] overflow-hidden relative bg-[url('/images/vacanciesImage.jpg')] bg-no-repeat bg-center bg-cover"
+          className="md:h-[510px] h-[300px] overflow-hidden relative bg-[url('/images/vacanciesImage.jpg')] bg-no-repeat bg-center bg-cover"
         >
-          <p className="md:text-9xl text-7xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-10 mb-0 pb-0">
+          <p className="md:text-9xl text-5xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-5 mb-0 pb-0">
             Vacancies
           </p>
         </motion.section>
@@ -339,7 +339,7 @@ const Vancancies = () => {
                       <p>
                         The worlds leading financial services firm, is hiring
                         banking & non-banking Professionals at various levels.
-                        Those roles are oepn to all, including applicants based
+                        Those roles are open to all, including applicants based
                         outside the UK.
                       </p>
                       <div className="w-1/2">
@@ -526,9 +526,9 @@ const Vancancies = () => {
                   }}
                   viewport={{ once: true, amount: 0.5 }}
                 >
-                  <Button rounded size="md" className="text-center mb-5">
+                  {/* <Button rounded size="md" className="text-center mb-5">
                     Proceed to payment
-                  </Button>
+                  </Button> */}
                 </motion.div>
               </Card>
             </div>

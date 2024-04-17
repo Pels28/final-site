@@ -19,7 +19,7 @@ const TopBar = () => {
             color="primary"
           />
           {/* <Image src="/svg/EmailIcon.svg"/> */}
-          <p className="text-xs">operations@northdevonrecruitment.com</p>
+          <p className="text-xs">operationsmanager@ndrecruitment.com</p>
         </div>
         <div className="flex flex-row items-center justify-start gap-3">
           <BsTelephoneFill
@@ -28,7 +28,7 @@ const TopBar = () => {
             className="w-5 h-7"
             color="primary"
           />
-          <p className="text-xs">+(233) 597 986 097</p>
+          <p className="text-xs">+(233) 530 610 013</p>
         </div>
         <div className="flex flex-row items-center justify-start gap-3">
           <GoClockFill
@@ -49,7 +49,6 @@ const TopBar = () => {
             <FacebookIcon className="w-5 h-5" />
           </Link>
         </IconButton>
-        
 
         <IconButton rounded variant="link" color="secondary">
           <Link

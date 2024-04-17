@@ -14,7 +14,7 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { FaChevronLeft, FaLinkedinIn } from "react-icons/fa";
 import KumasiMapSearch from "@/components/KumasiMapSearch";
 import AccraMapSearch from "@/components/AccraMapSearch";
-import { IoMdClock, IoMdPhonePortrait } from "react-icons/io";
+import { IoLogoWhatsapp, IoMdClock, IoMdPhonePortrait } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import Textarea from "@/components/forms/Textarea";
 import Checkbox from "@/components/forms/Checkbox";
@@ -44,9 +44,9 @@ const ContactUs = () => {
       <div className="w-screen ">
         <motion.section
           style={{ opacity: opacityHome, y: opacityY }}
-          className="md:h-[510px] h-[500px] overflow-hidden relative bg-[url('/images/new-contact-us.jpg')] bg-no-repeat bg-center bg-cover opacity-90 "
+          className="md:h-[510px] h-[300px] overflow-hidden relative bg-[url('/images/new-contact-us.jpg')] bg-no-repeat bg-center bg-cover opacity-90 "
         >
-          <p className="md:text-9xl text-7xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-10 mb-0 pb-0">
+          <p className="md:text-9xl text-5xl w-full bg-transparent font-black subpixel-antialiased tracking-wide text-gray opacity-70 absolute bottom-0 left-5 mb-0 pb-0">
             Contact Us
           </p>
         </motion.section>
@@ -205,8 +205,7 @@ const ContactUs = () => {
                 x: 0,
                 transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
               }}
-              viewport={{ once: true, amount: 0.5 }}
-            >
+              viewport={{ once: true, amount: 0.5 }}>
               <IconButton
                 className="p-2"
                 size="lg"
@@ -219,6 +218,30 @@ const ContactUs = () => {
                   href="https://www.facebook.com/profile.php?id=61554625350987&mibextid=LQQJ4d"
                 >
                   <FacebookIcon className="w-8 h-8" />
+                </Link>
+              </IconButton>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { staggerChildren: 0.5, delay: 0.2, duration: 0.5 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}>
+              <IconButton
+                className="p-2"
+                size="lg"
+                rounded
+                variant="link"
+                color="secondary"
+              >
+                <Link
+                  isExternal
+                  href="https://wa.me/+233530610013"
+                >
+                  <IoLogoWhatsapp className="w-8 h-8" />
                 </Link>
               </IconButton>
             </motion.div>
@@ -490,6 +513,7 @@ const ContactUs = () => {
               viewport={{ once: true, amount: 0.5 }}
               className="w-1/2"
             >
+              
               <Card className="bg-primary w-full text-white h-[290px] pt-8 flex flex-col">
                 <motion.div
                   initial={{ opacity: 0, x: -100 }}
@@ -518,6 +542,7 @@ const ContactUs = () => {
                   </Link>
                 </IconButton>
 
+                
                 <div>
                   <motion.a
                     initial={{ opacity: 0, x: -100 }}
@@ -557,6 +582,25 @@ const ContactUs = () => {
                   >
                     <AiFillInstagram size={35} />
                     <span>Instagram</span>
+                  </motion.a>
+
+                  <motion.a
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                      transition: {
+                        ease: "easeInOut",
+                        delay: 0.5,
+                        duration: 0.5,
+                      },
+                    }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    target="_blank"
+                    href="https://wa.me/+233530610013"
+                    className="flex items-center gap-4">
+                    <IoLogoWhatsapp size={35} />
+                    <span>WHATSAPP</span>
                   </motion.a>
 
                   <motion.a
@@ -731,7 +775,7 @@ const ContactUs = () => {
                       onBlur={handleBlur}
                       variant="underlined"
                       label="Select our office"
-                      options={[{ id: "1", label: "SpringFiels" }]}
+                      options={[{ id: "1", label: "Accra" },{ id: "2", label: "Kumasi" }]}
                     />
                     <motion.div
                       initial={{ opacity: 0, x: 100 }}
